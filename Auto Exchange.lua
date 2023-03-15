@@ -25,12 +25,6 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 
-	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
-    name = sampGetPlayerNickname(id)
-    if name ~= "Miset_Basotskiy" then
-        thisScript():unload()
-    end
-
 	if autoupdate_loaded and enable_autoupdate and Update then
         pcall(Update.check, Update.json_url, Update.prefix, Update.url)
     end
@@ -70,3 +64,4 @@ function sampGetListboxItemByText(text, plain)
     end
     return -1
 end
+
