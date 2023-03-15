@@ -40,17 +40,14 @@ function main()
 	while true do
 		wait(0)
 
-		if state2 == false then
-			if not sampIsChatInputActive() and not isSampfuncsConsoleActive() and not sampIsDialogActive() then
-				setVirtualKeyDown(18, true)
-				wait(200)
-				setVirtualKeyDown(18, false)
-			end
+		if state == false then
+			setVirtualKeyDown(18, true)
+			wait(10)
+			setVirtualKeyDown(18, false)
 		end
-		if isKeyJustPressed(VK_T) then
-			sampAddChatMessage("[AE]: {FFFFFF}Деактивирован!", 0xE5336B)
-			state = false
-			state2 = false
+		if isKeyJustPressed(VK_E) then
+			state = true
+			state2 = true
 		end
 	end
 end
