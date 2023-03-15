@@ -9,20 +9,27 @@ if enable_autoupdate then
     if updater_loaded then
         autoupdate_loaded, Update = pcall(Updater)
         if autoupdate_loaded then
-            Update.json_url = "https://raw.githubusercontent.com/qrlk/moonloader-script-updater/master/minified-example.json?" .. tostring(os.clock())
+            Update.json_url = "https://raw.githubusercontent.com/Mise145/Mise/main/update.json" .. tostring(os.clock())
             Update.prefix = "[" .. string.upper(thisScript().name) .. "]: "
-            Update.url = "https://github.com/qrlk/moonloader-script-updater/"
         end
     end
 end
+
+require 'lib.moonloader'
 local tag = "[Auto exchange]: "
 local sampev = require("samp.events")
-local vkeys = require "vkeys"
 local state = true
 require "lib.sampfuncs"
+
 function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
+
+	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
+    name = sampGetPlayerNickname(id)
+    if name ~= "Miset_Basotskiy" then
+        thisScript():unload()
+    end
 
 	if autoupdate_loaded and enable_autoupdate and Update then
         pcall(Update.check, Update.json_url, Update.prefix, Update.url)
@@ -32,20 +39,12 @@ function main()
 
 	while true do
 		wait(0)
-
-		if state == false then
-			if not sampIsChatInputActive() and not isSampfuncsConsoleActive() and not sampIsDialogActive() then
-				setVirtualKeyDown(18, true)
-				wait(100)
-				setVirtualKeyDown(18, false)
-			end
-		end
 	end
 end
 
 function cmd_auto(arg)
 	state = not state
-	sampAddChatMessage(tag.. (state and 'Скрипт включен.' or 'Скрипт выключен.'), 0xff0000)
+	sampAddChatMessage(tag.. (state and 'Выключен.' or 'Включён.'), 0xff0000)
 end
 
 function sampev.onShowDialog(id, style, title, button1, button2, tekst)
