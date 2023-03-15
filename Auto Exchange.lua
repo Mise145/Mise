@@ -16,7 +16,7 @@ if enable_autoupdate then
 end
 
 require 'lib.moonloader'
-local tag = "[Auto exchange]: "
+local tag = "[AE]: "
 local sampev = require("samp.events")
 local state = true
 local state2 = true
@@ -47,13 +47,18 @@ function main()
 				setVirtualKeyDown(18, false)
 			end
 		end
+		if isKeyJustPressed(VK_T) then
+			sampAddChatMessage("[AE]: {FFFFFF}Деактивирован!", 0xE5336B)
+			state = false
+			state2 = false
+		end
 	end
 end
 
 function cmd_auto(arg)
 	state = not state
 	state2 = not state
-	sampAddChatMessage(tag.. (state and 'Выключен.' or 'Включён.'), 0xff0000)
+	sampAddChatMessage(tag.. (state and 'Выключен.' or 'Включён для деактивации нажмите T.'), 0xff0000)
 end
 
 function sampev.onShowDialog(id, style, title, button1, button2, tekst)
@@ -79,3 +84,4 @@ function sampGetListboxItemByText(text, plain)
     end
     return -1
 end
+
