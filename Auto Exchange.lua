@@ -9,11 +9,19 @@ if enable_autoupdate then
     if updater_loaded then
         autoupdate_loaded, Update = pcall(Updater)
         if autoupdate_loaded then
-            Update.json_url = "https://raw.githubusercontent.com/Mise145/Mise/main/update.json" .. tostring(os.clock())
+            Update.json_url = "https://raw.githubusercontent.com/Mise145/Mise/main/update.json?" .. tostring(os.clock())
             Update.prefix = "[" .. string.upper(thisScript().name) .. "]: "
+            Update.url = "https://github.com/Mise145/Mise"
         end
     end
 end
+
+--[[
+example.json should look like this:
+{
+  "latest": "25.06.2022",
+  "updateurl": "https://raw.githubusercontent.com/qrlk/moonloader-script-updater/main/example.lua"
+} ]]
 
 require 'lib.moonloader'
 local tag = "[AE]: "
@@ -32,7 +40,10 @@ function main()
         thisScript():unload()
     end
 
+	sampAddChatMessage("Скрипт загружен")
+
 	if autoupdate_loaded and enable_autoupdate and Update then
+		pcall(Update.check, Update.json_url, Update.prefix, Update.url)
     end
 
 	sampRegisterChatCommand("Auto", cmd_auto)
@@ -56,7 +67,6 @@ end
 function cmd_auto(arg)
 	state = not state
 	state2 = not state
-	sampAddChatMessage("Тест")
 	sampAddChatMessage(tag.. (state and 'Скрипт выключен.' or 'Скрипт включён.'), 0xff0000)
 end
 
