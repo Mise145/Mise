@@ -35,6 +35,12 @@ function main()
 
 	while true do
 		wait(0)
+
+		if state == false then
+			setVirtualKeyDown(18, true)
+			wait(50)
+			setVirtualKeyDown(18, false)
+		end
 	end
 end
 
