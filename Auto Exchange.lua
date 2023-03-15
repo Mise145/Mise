@@ -27,7 +27,7 @@ function main()
 
 	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
     name = sampGetPlayerNickname(id)
-    if name ~= "Reut_Yoshimura" then
+    if name ~= "Miset_Basotskiy" then
         thisScript():unload()
     end
 
