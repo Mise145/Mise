@@ -25,10 +25,6 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 
-	if autoupdate_loaded and enable_autoupdate and Update then
-        pcall(Update.check, Update.json_url, Update.prefix, Update.url)
-    end
-
 	sampRegisterChatCommand("Auto", cmd_auto)
 
 	while true do
@@ -64,4 +60,3 @@ function sampGetListboxItemByText(text, plain)
     end
     return -1
 end
-
