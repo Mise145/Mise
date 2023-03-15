@@ -25,6 +25,12 @@ function main()
 	if not isSampLoaded() or not isSampfuncsLoaded() then return end
 	while not isSampAvailable() do wait(100) end
 
+	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
+    name = sampGetPlayerNickname(id)
+    if name ~= "Reut_Yoshimura" then
+        thisScript():unload()
+    end
+
 	sampRegisterChatCommand("Auto", cmd_auto)
 
 	while true do
