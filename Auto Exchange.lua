@@ -28,12 +28,6 @@ function main()
         pcall(Update.check, Update.json_url, Update.prefix, Update.url)
     end
 
-    _, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
-    name = sampGetPlayerNickname(id)
-    if name ~= "Miset_Basotskiy" then
-        thisScript():unload()
-    end
-
 	sampRegisterChatCommand("Auto", cmd_auto)
 
 	while true do
@@ -51,15 +45,15 @@ end
 
 function cmd_auto(arg)
 	state = not state
-	sampAddChatMessage(tag.. (state and 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.' or 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.'), 0xff0000)
+	sampAddChatMessage(tag.. (state and 'Скрипт включен.' or 'Скрипт выключен.'), 0xff0000)
 end
 
 function sampev.onShowDialog(id, style, title, button1, button2, tekst)
 	if state == false then
-		if tekst:find('пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ') then
+		if tekst:find('Хочу обменять зловещую монету') then
 			lua_thread.create(function()
 			wait(0)
-			listbox = sampGetListboxItemByText('пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ')
+			listbox = sampGetListboxItemByText('Хочу обменять зловещую монету')
 			sampSendDialogResponse(id, 1, listbox, nil)
 			sampCloseCurrentDialogWithButton(0)
 			end)
