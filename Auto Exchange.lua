@@ -1,5 +1,5 @@
 script_name("Auto Exchange")
-script_version("1.00")
+script_version("1.50")
 
 local enable_autoupdate = true -- false to disable auto-update + disable sending initial telemetry (server, moonloader version, script version, samp nickname, virtual volume serial number)
 local autoupdate_loaded = false
