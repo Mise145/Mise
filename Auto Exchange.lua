@@ -93,7 +93,7 @@ function sampGetListboxItemByText(text, plain)
 end
 
 function sampev.onServerMessage(color, text)
-	if string.find(text,"РЈ С‚РµР±СЏ РЅРµС‚ Р·Р»РѕРІРµС‰РёС… РјРѕРЅРµС‚!", 1, true) then
+	if string.find(text,"У тебя нет зловещих монет!", 1, true) then
 		state = true
 	end
 end
