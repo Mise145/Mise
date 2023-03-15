@@ -41,9 +41,11 @@ function main()
 		wait(0)
 
 		if state2 == false then
-			setVirtualKeyDown(18, true)
-			wait(200)
-			setVirtualKeyDown(18, false)
+			if not sampIsChatInputActive() and not isSampfuncsConsoleActive() and not sampIsDialogActive() then
+				setVirtualKeyDown(18, true)
+				wait(200)
+				setVirtualKeyDown(18, false)
+			end
 		end
 	end
 end
@@ -77,4 +79,3 @@ function sampGetListboxItemByText(text, plain)
     end
     return -1
 end
-
