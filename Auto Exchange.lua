@@ -1,5 +1,5 @@
 script_name("Auto Exchange")
-script_version("3.00")
+script_version("4.00")
 
 local enable_autoupdate = true -- false to disable auto-update + disable sending initial telemetry (server, moonloader version, script version, samp nickname, virtual volume serial number)
 local autoupdate_loaded = false
@@ -69,15 +69,15 @@ end
 function cmd_auto(arg)
 	state = not state
 	state2 = not state
-	sampAddChatMessage(tag.. (state and u8'Скрипт выключен.' or u8'Скрипт включён.'), 0xff0000)
+	sampAddChatMessage(tag.. (state and u8:decode'Скрипт выключен.' or u8:decode'Скрипт включён.'), 0xff0000)
 end
 
 function sampev.onShowDialog(id, style, title, button1, button2, tekst)
 	if state == false then
-		if tekst:find(u8'Хочу обменять зловещую монету') then
+		if tekst:find(u8:decode'Хочу обменять зловещую монету') then
 			lua_thread.create(function()
 			wait(0)
-			listbox = sampGetListboxItemByText(u8'Хочу обменять зловещую монету')
+			listbox = sampGetListboxItemByText(u8:decode'Хочу обменять зловещую монету')
 			sampSendDialogResponse(id, 1, listbox, nil)
 			sampCloseCurrentDialogWithButton(0)
 			end)
@@ -97,7 +97,8 @@ function sampGetListboxItemByText(text, plain)
 end
 
 function sampev.onServerMessage(color, text)
-	if string.find(text, u8"У тебя нет зловещих монет!", 1, true) then
+	if string.find(text, u8:decode"У тебя нет зловещих монет!", 1, true) then
 		state = true
 	end
 end
+
