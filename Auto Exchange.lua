@@ -19,6 +19,7 @@ require 'lib.moonloader'
 local tag = "[Auto exchange]: "
 local sampev = require("samp.events")
 local state = true
+local state2 = true
 require "lib.sampfuncs"
 
 function main()
@@ -36,16 +37,20 @@ function main()
 	while true do
 		wait(0)
 
-		if state == false then
+		if state2 == false then
 			setVirtualKeyDown(18, true)
 			wait(50)
 			setVirtualKeyDown(18, false)
+		end
+		if isKeyJustPressed(VK_T) then
+			state2 = true
 		end
 	end
 end
 
 function cmd_auto(arg)
 	state = not state
+	state2 = not state
 	sampAddChatMessage(tag.. (state and 'Выключен.' or 'Включён.'), 0xff0000)
 end
 
