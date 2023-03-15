@@ -32,6 +32,10 @@ function main()
         thisScript():unload()
     end
 
+	if autoupdate_loaded and enable_autoupdate and Update then
+        pcall(Update.check, Update.json_url, Update.prefix, Update.url)
+    end
+
 	sampRegisterChatCommand("Auto", cmd_auto)
 
 	while true do
@@ -81,3 +85,4 @@ function sampGetListboxItemByText(text, plain)
     end
     return -1
 end
+
