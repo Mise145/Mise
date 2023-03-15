@@ -42,8 +42,12 @@ function main()
 			wait(50)
 			setVirtualKeyDown(18, false)
 		end
-		if isKeyJustPressed(VK_T) then
-			state2 = true
+		if state and state == false then
+			if isKeyJustPressed(VK_T) then
+				state2 = true
+				state = true
+				sampAddChatMessage("Скрипт выключен!", 0xff0000)
+			end
 		end
 	end
 end
