@@ -41,6 +41,7 @@ function main()
 		wait(0)
 
 		if state == false then
+			wait(300)
 			setVirtualKeyDown(18, true)
 			wait(10)
 			setVirtualKeyDown(18, false)
@@ -55,7 +56,8 @@ end
 function cmd_auto(arg)
 	state = not state
 	state2 = not state
-	sampAddChatMessage(tag.. (state and 'Выключен.' or 'Включён для деактивации нажмите T.'), 0xff0000)
+	sampAddChatMessage("Тест")
+	sampAddChatMessage(tag.. (state and 'Скрипт выключен.' or 'Скрипт включён.'), 0xff0000)
 end
 
 function sampev.onShowDialog(id, style, title, button1, button2, tekst)
@@ -82,3 +84,8 @@ function sampGetListboxItemByText(text, plain)
     return -1
 end
 
+function sampev.onServerMessage(color, text)
+	if string.find(text,"У тебя нет зловещих монет!", 1, true) then
+		state = true
+	end
+end
